@@ -1,0 +1,47 @@
+# .goreleaser.yaml
+version: 2
+
+builds:
+  - main: ./cmd/premium-list-maker
+    binary: premium-list-maker
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+brews:
+  - name: premium-list-maker
+    description: "Tool for managing domain label lists and generating premium pricing"
+    homepage: "https://github.com/onasunnymorning/premium-list-maker"
+    directory: Formula
+    repository:
+      owner: onasunnymorning
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    install: |
+      bin.install "premium-list-maker"
