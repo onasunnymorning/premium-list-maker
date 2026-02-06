@@ -2,7 +2,7 @@
 version: 2
 
 builds:
-  - main: ./cmd/premium-list-maker/main.go
+  - main: ./cmd/premium-list-maker
     binary: premium-list-maker
     env:
       - CGO_ENABLED=0
@@ -16,7 +16,8 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
 
 archives:
-  - format: tar.gz
+  - formats: 
+      - tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
 checksum:
