@@ -1,0 +1,16 @@
+# Binaries
+premium-list-maker
+
+# OS Specific
+.DS_Store
+
+# Data files
+*.csv
+*.tar.gz
+*.db
+*.db-shm
+*.db-wal
+lists/
+
+# Go
+vendor/
