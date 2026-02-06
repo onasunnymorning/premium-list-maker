@@ -13,6 +13,23 @@ A Go CLI application for generating premium domain lists for top-level domain re
 
 ## Installation
 
+### macOS (via Homebrew)
+
+You can install the tool using our custom Homebrew tap:
+
+```bash
+brew install onasunnymorning/tap/premium-list-maker
+```
+
+Or manually:
+
+```bash
+brew tap onasunnymorning/tap
+brew install premium-list-maker
+```
+
+### Manual Installation (Build from Source)
+
 ```bash
 go build -o premium-list-maker ./cmd/premium-list-maker
 ```
